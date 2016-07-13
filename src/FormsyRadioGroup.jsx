@@ -9,6 +9,9 @@ const FormsyRadioGroup = React.createClass({
     children: React.PropTypes.node,
     name: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func,
+    validationError: React.PropTypes.string,
+    validationErrors: React.PropTypes.object,
+    validations: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.object]),
   },
 
   mixins: [Formsy.Mixin],
@@ -25,9 +28,15 @@ const FormsyRadioGroup = React.createClass({
   setMuiComponentAndMaybeFocus: setMuiComponentAndMaybeFocus,
 
   render() {
+    const {
+      validations, // eslint-disable-line no-unused-vars
+      validationError, // eslint-disable-line no-unused-vars
+      validationErrors, // eslint-disable-line no-unused-vars
+      ...rest } = this.props;
+
     return (
       <RadioButtonGroup
-        {...this.props}
+        {...rest}
         ref={this.setMuiComponentAndMaybeFocus}
         onChange={this.handleValueChange}
       >
